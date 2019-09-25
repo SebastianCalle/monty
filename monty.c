@@ -10,7 +10,7 @@
  */
 int main(int argc, char **argv)
 {
-	char line[50];
+	char line[2048];
 	char **args;
 	FILE *fd;
 	int n = 0, flag, l = 1;
@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 
 	fd = fopen(argv[1], "r");
 	inst = init_node();
-	while (fgets(line, 50, (FILE *) fd))
+	while (fgets(line, 2048, (FILE *) fd))
 	{
 		args = _strtok(line, &n);
 		if (args == NULL || args[0] == NULL)
