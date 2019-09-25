@@ -1,53 +1,23 @@
 #ifndef MONTY_H
 #define MONTY_H
 
-#include <string.h>
-#include <stdlib.h>
 #include <stdio.h>
-
-#define STACK 0
-#define QUEUE 1
-
+#include <stdlib.h>
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
+ * @n: integer
  * @prev: points to the previous element of the stack (or queue)
  * @next: points to the next element of the stack (or queue)
- * @value: integer
  *
  * Description: doubly linked list node structure
  * for stack, queues, LIFO, FIFO Holberton project
  */
 typedef struct stack_s
 {
+	int n;
 	struct stack_s *prev;
 	struct stack_s *next;
-	int value;
 } stack_t;
-
-/**
- * struct node_s - doubly linked list representation of a manager stack
- * @head: points to first element of a list
- * @tail: points to last element of a list
- * @opcode: current opcode
- * @type: type [stack | queue]
- * @arg: current argument by the current opcode
- *
- * Description: doubly linked list node structure
- * for stack, queues, LIFO, FIFO Holberton project
- */
-typedef struct node_s
-{
-	stack_t *head;
-	stack_t *tail;
-	char *opcode;
-	int type;
-	int arg;
-} node_t;
-
-void free_stack(node_t *main, FILE *fd);
-int parse(FILE *fd, node_t *main);
-typedef int (*fun)(node_t *main);
-node_t *init_main_node(void);
 
 /**
  * struct instruction_s - opcode and its function
@@ -60,7 +30,13 @@ node_t *init_main_node(void);
 typedef struct instruction_s
 {
 	char *opcode;
-	fun f;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+char **_strtok(char *buffer, int *n);
+int check_del(char c, char b);
+int check_flag(char str, int *index, int *i, int *c);
+int count_letters(char *str, int *index, int *l);
+int count_arg(char *str);
+void *_calloc(unsigned int nmemb, unsigned int size);
 
-#endif /* MONTY_H */
+#endif
