@@ -39,7 +39,6 @@ int queue_push(node_t *main)
  *
  * Return: value of the tail stack
  */
-/*
 int queue_pop(node_t *main)
 {
 	if (main->tail)
@@ -58,4 +57,4 @@ int queue_pop(node_t *main)
 	}
 
 	return (0);
-}*/
+}

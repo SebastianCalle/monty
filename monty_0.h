@@ -38,5 +38,6 @@ int check_flag(char str, int *index, int *i, int *c);
 int count_letters(char *str, int *index, int *l);
 int count_arg(char *str);
 void *_calloc(unsigned int nmemb, unsigned int size);
+int check_opcode(char **args);
 
 #endif

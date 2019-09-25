@@ -45,9 +45,9 @@ typedef struct node_s
 } node_t;
 
 void free_stack(node_t *main, FILE *fd);
-int parse(FILE *fd, node_t *main);
-typedef int (*fun)(node_t *main);
-node_t *init_main_node(void);
+int parse(FILE *fd, node_t *inst);
+typedef int (*fun)(node_t *inst);
+node_t *init_node();
 
 /**
  * struct instruction_s - opcode and its function
@@ -62,5 +62,18 @@ typedef struct instruction_s
 	char *opcode;
 	fun f;
 } instruction_t;
+char **_strtok(char *buffer, int *n);
+int check_del(char c, char b);
+int check_flag(char str, int *index, int *i, int *c);
+int count_letters(char *str, int *index, int *l);
+int count_arg(char *str);
+void *_calloc(unsigned int nmemb, unsigned int size);
+int check_opcode(char **args, node_t *inst);
+
+/* Funtions stack*/
+int toggle_type(node_t *main);
+int stack_push(node_t *main);
+int stack_pop(node_t *main);
+int pall(node_t *main);
 
 #endif /* MONTY_H */

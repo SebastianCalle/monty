@@ -30,7 +30,7 @@ int check_del(char c, char b)
 int check_flag(char str, int *index, int *i, int *c)
 {
 
-	if (str > 32 && str < 126 && str != ':')
+	if ((str > 32 && str < 126) || str == 12)
 	{
 		*index = *i;
 		if (*i > 0)
@@ -51,7 +51,7 @@ int check_flag(char str, int *index, int *i, int *c)
 int count_letters(char *str, int *index, int *l)
 {
 	int c = 0, flag = 0, flag2, j, i;
-	const char *del = ": \t\r\a\0\n";
+	const char *del = ": \t\r\a\0";
 
 	i = *l;
 cont:

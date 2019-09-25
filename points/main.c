@@ -42,18 +42,18 @@ int main(__attribute__((unused)) int argc, char *argv[])
  *
  * Return: new main node address
  */
-node_t *init_main_node(void)
+node_t *init_node(void)
 {
-	node_t *main = malloc(sizeof(node_t)); /* Create main node */
+	node_t *inst = malloc(sizeof(node_t)); /* Create main node */
 
-	if (!main) /* If there is an error creating the main node */
+	if (!inst) /* If there is an error creating the main node */
 		return (NULL);
 
 	main->head = NULL;  /* head of the stack */
 	main->tail = NULL;  /* tail of the stack */
 	main->type = STACK; /* stack by default  */
 
-	return (main);
+	return (inst);
 }
 
 /**

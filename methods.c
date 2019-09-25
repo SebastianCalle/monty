@@ -3,6 +3,7 @@
 /**
  * get_methods - return function opcode
  * @main: main node
+ * @stack_methods: stacks for check opcode
  *
  * Return: address to function
  */

@@ -11,6 +11,8 @@ char **_strtok(char *buffer, int *n)
 	int a = 0, cl = 0, k = 0, in = 0, j = 0;
 	int index = 0, i = 0;
 
+	if (buffer[0] ==  '\n')
+		return (NULL);
 	a = count_arg(buffer);
 	args = _calloc(a + 1, sizeof(char *));
 	if (args == NULL)

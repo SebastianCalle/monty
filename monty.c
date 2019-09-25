@@ -1,29 +1,48 @@
 #include "monty.h"
 #include <string.h>
 #include <ctype.h>
-
+/**
+ * main - Entry point
+ * @argc: arguments count
+ * @argv: arguments vector
+ *
+ * Return: Always 0 (Success)
+ */
 int main(int argc, char **argv)
 {
 	char line[50];
 	char **args;
 	FILE *fd;
-	int n = 0, num;
+	int n = 0, flag, l = 1;
+	node_t *inst = NULL;
+
+	if (argc != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
 
 	fd = fopen(argv[1], "r");
-	while(fgets(line, 50, (FILE*) fd))
+	inst = init_node();
+	while (fgets(line, 50, (FILE *) fd))
 	{
 		args = _strtok(line, &n);
-		if (strcmp(args[0], "push") == 0)
+		if (args == NULL || args[0] == NULL)
+			continue;
+		inst->opcode = args[0];
+		inst->arg = args[1] ? atoi(args[1]) : 0;
+		flag = check_opcode(args, inst);
+		if (flag == 0)
 		{
-			num = atoi(args[1]);
-			printf("%s %d\n", args[0], num);
+			fprintf(stderr, "USAGE: monty file\n");
+			exit(EXIT_FAILURE);
 		}
+		l++;
 		n = 0;
 		free(args[0]);
 		free(args[1]);
 		free(args);
 	}
-	fclose(fd);
-
+	free_stack(inst, fd);
 	return (0);
 }

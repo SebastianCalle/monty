@@ -51,8 +51,8 @@ int stack_pop(node_t *main)
 
 	if (main->head)
 	{
-		/*if (main->type == STACK)
-		{*/
+		/*if (main->type == STACK)*/
+		/*{*/
 		tmp = main->head->next;
 		value = main->head->value;
 		free(main->head);
@@ -62,9 +62,9 @@ int stack_pop(node_t *main)
 			tmp->prev = NULL;
 
 		return (value);
-		/*}
-		else
-			queue_pop(main);*/
+		/*}*/
+		/*else*/
+		/*	queue_pop(main);*/
 	}
 
 	return (0);
