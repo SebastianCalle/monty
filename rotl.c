@@ -8,18 +8,13 @@
 int rotl(node_t *inst)
 {
 	stack_t *top = inst->head;
-	stack_t *top2 = inst->head;
-	stack_t *aux = top->next;
+	int num = inst->head->value;
 
 	if (!inst->head)
 		return (0);
-	while (top->next)
-	{
-		top = top->next;
-	}
-	inst->head = aux;
-	top->next = top2;
-	top2->next = NULL;
+	
+	add_dnodeint_end(&top, num);
+	stack_pop(inst);
 
 	return (1);
 }

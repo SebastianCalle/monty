@@ -53,6 +53,7 @@ typedef struct node_s
 
 typedef int (*fun)(node_t *inst);
 node_t *init_node();
+stack_t *add_dnodeint_end(stack_t **head, const int n);
 
 /**
  * struct instruction_s - opcode and its function
