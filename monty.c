@@ -10,7 +10,7 @@
  */
 int main(int argc, char *argv[])
 {
-	int n = 0, flag, l = 1, i;
+	int n = 0, flag, i;
 	node_t *inst = NULL;
 	size_t ma = 0;
 	char **args;
@@ -27,22 +27,22 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	inst = init_node();
+	inst = init_node(), inst->fd = fd;
 	while (getline(&inst->line, &ma, fd) != -1)
 	{
 		args = _strtok(inst->line, &n);
 		if (args == NULL || args[0] == NULL)
 			continue;
 		inst->opcode = args[0];
-		inst->arg = argument_pass(args, l, inst, fd);
+		inst->arg = argument_pass(args, inst->line_num, inst, fd);
 		flag = check_opcode(args, inst);
 		if (flag == 0)
 		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", l, args[0]);
+			fprintf(stderr, "L%d: unknown instruction %s\n", inst->line_num, args[0]);
 			free_memory_int_error(args, inst, fd);
 			exit(EXIT_FAILURE);
 		}
-		l++;
+		inst->line_num++;
 		n = 0;
 		for (i = 0; args[i]; i++)
 			free(args[i]);

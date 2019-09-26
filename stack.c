@@ -80,6 +80,12 @@ int pall(node_t *main)
 {
 	stack_t *tmp = main->head;
 
+	if (!main->head)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", main->line_num);
+		free_memory_int_error(NULL, main, main->fd);
+	}
+
 	if (!strcmp(main->opcode, "pint"))
 	{
 		printf("%d\n", tmp->value);

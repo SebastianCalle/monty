@@ -43,8 +43,9 @@ node_t *init_node()
 
 	inst->head = NULL;  /* head of the stack */
 	inst->tail = NULL;  /* tail of the stack */
-	inst->line = NULL;
+	inst->line = NULL;  /* current line      */
 	inst->type = STACK; /* stack by default  */
+	inst->line_num = 1;
 	return (inst);
 }
 /**
@@ -57,6 +58,7 @@ node_t *init_node()
 void free_stack(node_t *main, FILE *fd)
 {
 	free(main->line);
+
 	if (main->head)
 	{
 		stack_t *tmp = main->head;
@@ -70,7 +72,9 @@ void free_stack(node_t *main, FILE *fd)
 		}
 	}
 
-	fclose(fd);
+	if (fd)
+		fclose(fd);
+
 	free(main);
 }
 /**
@@ -120,9 +124,13 @@ int argument_pass(char **args, int l, node_t *inst, FILE *fd)
  */
 void free_memory_int_error(char **args, node_t *inst, FILE *fd)
 {
-	free(args[0]);
-	free(args[1]);
-	free(args);
+	int i;
+
+	for (i = 0; args && args[i]; i++)
+		free(args[i]);
+
+	if (args)
+		free(args);
 
 	free_stack(inst, fd);
 	exit(EXIT_FAILURE);
