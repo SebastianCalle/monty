@@ -84,5 +84,6 @@ int add(node_t *inst);
 int sub(node_t *inst);
 int divide(node_t *inst);
 int multiply(node_t *inst);
+int mod(node_t *inst);
 
 #endif /* MONTY_H */
