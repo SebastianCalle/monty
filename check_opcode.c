@@ -21,6 +21,7 @@ int check_opcode(node_t *ints)
 			{"swap", swap},
 			{"add", add},
 			{"nop", NULL},
+			{"#", NULL},
 			{NULL, NULL}
 	};
 
@@ -29,6 +30,8 @@ int check_opcode(node_t *ints)
 		eval = stack_methods[i].opcode ? 1 : 0;
 		if (eval && !strcmp(ints->opcode, stack_methods[i].opcode))
 		{
+			if (!strcmp(ints->opcode, "#"))
+				return (1);
 			if (strcmp(ints->opcode, "nop"))
 				stack_methods[i].f(ints);
 
