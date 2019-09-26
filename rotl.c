@@ -12,7 +12,7 @@ int rotl(node_t *inst)
 
 	if (!inst->head)
 		return (0);
-	
+
 	add_dnodeint_end(&top, num);
 	stack_pop(inst);
 
