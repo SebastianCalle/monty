@@ -25,7 +25,6 @@ int check_opcode(node_t *ints)
 			{"mul", multiply},
 			{"mod", mod},
 			{"nop", NULL},
-			{"#", NULL},
 			{NULL, NULL}
 	};
 
