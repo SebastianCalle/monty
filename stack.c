@@ -69,6 +69,11 @@ int stack_pop(node_t *main)
 		/*else*/
 		/*	queue_pop(main);*/
 	}
+	else
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", main->line_num);
+		free_all(main, 1);
+	}
 
 	return (0);
 }
