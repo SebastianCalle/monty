@@ -47,7 +47,6 @@ typedef struct node_s
 } node_t;
 
 void free_stack(node_t *main, FILE *fd);
-int parse(FILE *fd, node_t *inst);
 typedef int (*fun)(node_t *inst);
 node_t *init_node();
 
@@ -72,7 +71,7 @@ int count_arg(char *str);
 void *_calloc(unsigned int nmemb, unsigned int size);
 int check_opcode(char **args, node_t *inst);
 int argument_pass(char **args, int l, node_t *inst, FILE *fd);
-void free_memory_int_error(char **args, int l, node_t *inst, FILE *fd);
+void free_memory_int_error(char **args, node_t *inst, FILE *fd);
 
 /* Funtions stack*/
 int toggle_type(node_t *main);

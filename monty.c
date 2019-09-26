@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
 		if (flag == 0)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", l, args[0]);
+			free_memory_int_error(args, inst, fd);
 			exit(EXIT_FAILURE);
 		}
 		l++;
