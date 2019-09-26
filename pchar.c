@@ -10,7 +10,7 @@ int pchar(node_t *inst)
 	int num1;
 
 
-	if (inst->head == NULL || inst->head->next == NULL)
+	if (inst->head == NULL)
 	{
 		fprintf(stderr, "L%d: can't pchar, stack empty\n", inst->line_num);
 		free_all(inst, 1);
