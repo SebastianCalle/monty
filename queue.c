@@ -12,7 +12,7 @@ int queue_push(node_t *main)
 
 	if (!new_node)
 	{
-		fprintf(stderr, "Error: malloc failed");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 

@@ -59,7 +59,7 @@ node_t *init_node()
 
 	if (!inst)
 	{
-		fprintf(stderr, "Error: malloc failed");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
