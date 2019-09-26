@@ -43,6 +43,7 @@ node_t *init_node()
 
 	inst->head = NULL;  /* head of the stack */
 	inst->tail = NULL;  /* tail of the stack */
+	inst->line = NULL;
 	inst->type = STACK; /* stack by default  */
 	return (inst);
 }
@@ -55,6 +56,7 @@ node_t *init_node()
  */
 void free_stack(node_t *main, FILE *fd)
 {
+	free(main->line);
 	if (main->head)
 	{
 		stack_t *tmp = main->head;

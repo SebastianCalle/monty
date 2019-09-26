@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 {
 	int n = 0, flag, l = 1;
 	node_t *inst = NULL;
-	char line[10000];
+	size_t ma = 0;
 	char **args;
 	FILE *fd;
 
@@ -29,9 +29,9 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	inst = init_node();
-	while (fgets(line, 10000, (FILE *) fd))
+	while (getline(&inst->line, &ma, fd) != -1)
 	{
-		args = _strtok(line, &n);
+		args = _strtok(inst->line, &n);
 		if (args == NULL || args[0] == NULL)
 			continue;
 		inst->opcode = args[0];

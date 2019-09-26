@@ -41,6 +41,7 @@ typedef struct node_s
 	stack_t *head;
 	stack_t *tail;
 	char *opcode;
+	char *line;
 	int type;
 	int arg;
 } node_t;
