@@ -137,8 +137,8 @@ int swap(node_t *inst)
 
 	if (tmp == NULL || tmp->next == NULL)
 	{
-		fprintf(stderr, "L<line_number>: can't swap, stack too shortu");
-		exit(EXIT_FAILURE);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", inst->line_num);
+		free_all(inst, 1);
 	}
 
 	swp = tmp->value;
