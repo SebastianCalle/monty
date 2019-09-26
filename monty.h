@@ -33,6 +33,8 @@ typedef struct stack_s
  * @type: type [stack | queue]
  * @arg: current argument by the current opcode
  * @line: current line of the file
+ * @line_num: current line of the file
+ * @fd: file descriptor
  *
  * Description: doubly linked list node structure
  * for stack, queues, LIFO, FIFO Holberton project
@@ -41,8 +43,10 @@ typedef struct node_s
 {
 	stack_t *head;
 	stack_t *tail;
+	int line_num;
 	char *opcode;
 	char *line;
+	FILE *fd;
 	int type;
 	int arg;
 } node_t;
