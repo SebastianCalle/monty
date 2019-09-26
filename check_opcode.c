@@ -23,7 +23,7 @@ int check_opcode(node_t *ints)
 
 	for (i = 0; i < 7; i++)
 	{
-		eval = stack_methods[i].opcode;
+		eval = stack_methods[i].opcode ? 1 : 0;
 		if (eval && !strcmp(ints->opcode, stack_methods[i].opcode))
 		{
 			stack_methods[i].f(ints);
