@@ -50,6 +50,7 @@ int main(int argc, char *argv[])
 	}
 
 	free_all(inst, 0);
+	return (0);
 }
 
 /**
