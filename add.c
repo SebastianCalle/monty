@@ -8,14 +8,16 @@
  */
 int add(node_t *inst)
 {
+	int num1, num2;
+
 	if (inst == NULL || inst->head->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", inst->line_num);
 		free_all(inst, 1);
 	}
 
-	int num2 = inst->head->next->value;
-	int num1 = inst->head->value;
+	num2 = inst->head->next->value;
+	num1 = inst->head->value;
 
 	printf("%d\n", num1 + num2);
 	stack_pop(inst);
