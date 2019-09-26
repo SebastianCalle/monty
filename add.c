@@ -19,9 +19,12 @@ int add(node_t *inst)
 	num2 = inst->head->next->value;
 	num1 = inst->head->value;
 
-	printf("%d\n", num1 + num2);
 	stack_pop(inst);
 	stack_pop(inst);
 
+	inst->arg = "00"; /* push false number to the stack */
+	stack_push(inst); /* ... */
+
+	inst->head->value = num1 + num2; /* force correct value */
 	return (0);
 }
