@@ -19,10 +19,11 @@ int check_opcode(node_t *ints)
 			{"pall", pall},
 			{"pint", pall},
 			{"swap", swap},
+			{"add", add},
 			{NULL, NULL}
 	};
 
-	for (i = 0; i < 7; i++)
+	for (i = 0; stack_methods[i].opcode; i++)
 	{
 		eval = stack_methods[i].opcode ? 1 : 0;
 		if (eval && !strcmp(ints->opcode, stack_methods[i].opcode))

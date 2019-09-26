@@ -79,5 +79,6 @@ int stack_push(node_t *main);
 int stack_pop(node_t *main);
 int swap(node_t *inst);
 int pall(node_t *main);
+int add(node_t *inst);
 
 #endif /* MONTY_H */
