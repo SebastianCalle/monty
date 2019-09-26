@@ -20,6 +20,7 @@ int check_opcode(node_t *ints)
 			{"pint", pall},
 			{"swap", swap},
 			{"add", add},
+			{"sub", sub},
 			{"nop", NULL},
 			{"#", NULL},
 			{NULL, NULL}
