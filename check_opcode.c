@@ -113,7 +113,6 @@ int argument_pass(char **args, int l, node_t *inst, FILE *fd)
 /**
  * free_memory_int_error - free memory int error
  * @args: str to check
- * @l: number line
  * @inst: ...
  * @fd: file descriptor
  *
