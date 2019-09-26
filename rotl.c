@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * rotl - rotathes the stack to the top 
+ * rotl - rotathes the stack to the top
  * @inst: node the stack
  * Return: 1 if is succes or 0 if not
  */
@@ -11,7 +11,7 @@ int rotl(node_t *inst)
 	stack_t *top2 = inst->head;
 	stack_t *aux = top->next;
 
-	while(top->next)
+	while (top->next)
 	{
 		top = top->next;
 	}
