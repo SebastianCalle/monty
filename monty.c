@@ -1,6 +1,6 @@
 #include "monty.h"
 #include <string.h>
-#include <ctype.h>
+
 /**
  * main - Entry point
  * @argc: arguments count
@@ -8,13 +8,13 @@
  *
  * Return: Always 0 (Success)
  */
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
+	int n = 0, flag, l = 1;
+	node_t *inst = NULL;
 	char line[10000];
 	char **args;
 	FILE *fd;
-	int n = 0, flag, l = 1;
-	node_t *inst = NULL;
 
 	if (argc != 2)
 	{
@@ -22,7 +22,12 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	fd = fopen(argv[1], "r");
+	if (!(fd = fopen(argv[1], "r")))
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		exit(EXIT_FAILURE);
+	}
+
 	inst = init_node();
 	while (fgets(line, 10000, (FILE *) fd))
 	{
@@ -34,7 +39,7 @@ int main(int argc, char **argv)
 		flag = check_opcode(args, inst);
 		if (flag == 0)
 		{
-			fprintf(stderr, "USAGE: monty file\n");
+			fprintf(stderr, "L%d: unknown instruction %s\n", l, args[0]);
 			exit(EXIT_FAILURE);
 		}
 		l++;

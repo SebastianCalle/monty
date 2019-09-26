@@ -21,7 +21,7 @@ int check_opcode(char **args, node_t *ints)
 
 	for (i = 0; i < 7; i++)
 	{
-		if (!strcmp(args[0], stack_methods[i].opcode))
+		if (stack_methods[i].opcode && !strcmp(args[0], stack_methods[i].opcode))
 		{
 			stack_methods[i].f(ints);
 			return (1);
