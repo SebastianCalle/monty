@@ -73,7 +73,11 @@ void free_stack(node_t *main, FILE *fd)
 }
 /**
  * argument_pass - check if the argument is a digit
- * @arg: str to check
+ * @args: str to check
+ * @l: number line
+ * @inst: ...
+ * @fd: file descriptor
+ *
  * Return: the number of arg or error
  */
 int argument_pass(char **args, int l, node_t *inst, FILE *fd)
@@ -86,7 +90,7 @@ int argument_pass(char **args, int l, node_t *inst, FILE *fd)
 	{
 		for (i = 0; i < strlen(str); i++)
 		{
-			if(isdigit(str[i]) == 0)
+			if (isdigit(str[i]) == 0)
 			{
 				fprintf(stderr, "L%d: can't pint, stack empty\n", l);
 				free(args[0]);
