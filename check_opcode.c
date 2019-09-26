@@ -24,10 +24,11 @@ int check_opcode(node_t *ints)
 			{"div", divide},
 			{"mul", multiply},
 			{"mod", mod},
+			{"pchar", pchar},
 			{"nop", NULL},
 			{NULL, NULL}
 	};
-	
+
 	if (ints->opcode[0] == '#')
 		return (1);
 
