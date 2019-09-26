@@ -28,8 +28,6 @@ int main(int argc, char *argv[])
 	while (getline(&inst->line, &ma, inst->fd) != -1)
 	{
 		inst->opcode = strtok(inst->line, " \n\t");
-		if (!strcmp(inst->opcode, "#"))
-			continue;
 		inst->arg = strtok(NULL, " \n\t");
 		if (inst->opcode == NULL)
 		{
