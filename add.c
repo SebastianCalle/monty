@@ -10,7 +10,7 @@ int add(node_t *inst)
 {
 	int num1, num2;
 
-	if (inst == NULL || inst->head->next == NULL)
+	if (inst->head == NULL || inst->head->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", inst->line_num);
 		free_all(inst, 1);
