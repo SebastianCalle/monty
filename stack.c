@@ -1,5 +1,4 @@
 #include "monty.h"
-#include "queue.h"
 
 /**
  * stack_push - add new node to the top of the list
