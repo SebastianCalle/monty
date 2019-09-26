@@ -10,44 +10,89 @@
  */
 int main(int argc, char *argv[])
 {
-	int n = 0, flag, i;
-	node_t *inst = NULL;
-	size_t ma = 0;
-	char **args;
-	FILE *fd;
+	node_t *inst = init_node();
+	size_t ma = 0, l = 1;
 
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
+		free_file(inst, EXIT_FAILURE);
 	}
-	fd = fopen(argv[1], "r");
-	if (!fd)
+	inst->fd = fopen(argv[1], "r");
+
+	if (!inst->fd)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
+		free_file(inst, EXIT_FAILURE);
 	}
-	inst = init_node(), inst->fd = fd;
-	while (getline(&inst->line, &ma, fd) != -1)
+
+	while (getline(&inst->line, &ma, inst->fd) != -1)
 	{
-		args = _strtok(inst->line, &n);
-		if (args == NULL || args[0] == NULL)
-			continue;
-		inst->opcode = args[0];
-		inst->arg = argument_pass(args, inst->line_num, inst, fd);
-		flag = check_opcode(args, inst);
-		if (flag == 0)
+		inst->opcode = strtok(inst->line, " \n\t");
+		inst->arg = strtok(NULL, " \n\t");
+		if (inst->opcode == NULL)
 		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", inst->line_num, args[0]);
-			free_memory_int_error(args, inst, fd);
-			exit(EXIT_FAILURE);
+			inst->line_num++;
+			continue;
 		}
+		argument_pass(inst);
+
+		if (!check_opcode(inst))
+		{
+			l = inst->line_num;
+			fprintf(stderr, "L%ld: unknown instruction %s\n", l, inst->opcode);
+			free_all(inst, EXIT_FAILURE);
+		}
+
+		free(inst->line);
+		inst->line = NULL;
 		inst->line_num++;
-		n = 0;
-		for (i = 0; args[i]; i++)
-			free(args[i]);
-		free(args);
 	}
-	free_stack(inst, fd);
-	return (0);
+
+	free_all(inst, 0);
+}
+
+/**
+ * free_file - free memory before malloc
+ * @inst: main node
+ * @error: num error
+ *
+ * Return: void
+ */
+void free_file(node_t *inst, int error)
+{
+	if (inst->fd)
+		fclose(inst->fd);
+
+	free(inst);
+	exit(error);
+}
+
+/**
+ * free_all - free all memory
+ * @inst: main node
+ * @error: num error
+ *
+ * Return: void
+ */
+void free_all(node_t *inst, int error)
+{
+	if (inst->head)
+	{
+		stack_t *tmp = inst->head;
+		stack_t *next = NULL;
+
+		while (tmp)
+		{
+			next = tmp->next;
+			free(tmp);
+			tmp = next;
+		}
+	}
+
+	fclose(inst->fd);
+	free(inst->line);
+	free(inst);
+
+	exit(error);
 }

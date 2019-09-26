@@ -46,12 +46,11 @@ typedef struct node_s
 	int line_num;
 	char *opcode;
 	char *line;
+	char *arg;
 	FILE *fd;
 	int type;
-	int arg;
 } node_t;
 
-void free_stack(node_t *main, FILE *fd);
 typedef int (*fun)(node_t *inst);
 node_t *init_node();
 
@@ -68,15 +67,17 @@ typedef struct instruction_s
 	char *opcode;
 	fun f;
 } instruction_t;
-char **_strtok(char *buffer, int *n);
-int check_del(char c, char b);
+
+void *_calloc(unsigned int nmemb, unsigned int size);
 int check_flag(char str, int *index, int *i, int *c);
 int count_letters(char *str, int *index, int *l);
+int check_del(char c, char b);
 int count_arg(char *str);
-void *_calloc(unsigned int nmemb, unsigned int size);
-int check_opcode(char **args, node_t *inst);
-int argument_pass(char **args, int l, node_t *inst, FILE *fd);
-void free_memory_int_error(char **args, node_t *inst, FILE *fd);
+
+void free_file(node_t *inst, int error);
+void free_all(node_t *inst, int error);
+int argument_pass(node_t *inst);
+int check_opcode(node_t *inst);
 
 /* Funtions stack*/
 int toggle_type(node_t *main);

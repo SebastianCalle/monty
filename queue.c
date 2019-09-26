@@ -11,9 +11,12 @@ int queue_push(node_t *main)
 	stack_t *new_node = malloc(sizeof(stack_t));
 
 	if (!new_node)
-		return (0);
+	{
+		fprintf(stderr, "Error: malloc failed");
+		exit(EXIT_FAILURE);
+	}
 
-	new_node->value = main->arg;
+	new_node->value = atoi(main->arg);
 	new_node->next = NULL;
 	new_node->prev = NULL;
 

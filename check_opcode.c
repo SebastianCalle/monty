@@ -2,13 +2,15 @@
 
 /**
  * check_opcode - function that check if opcode exist
- * @args: arguments to check
  * @ints: node for the stack
+ *
  * Return: 1 if succesful or 0 if not
  */
-int check_opcode(char **args, node_t *ints)
+int check_opcode(node_t *ints)
 {
+	int eval = 0;
 	int i;
+
 	instruction_t stack_methods[] = {
 			{"queue", toggle_type},
 			{"stack", toggle_type},
@@ -21,12 +23,14 @@ int check_opcode(char **args, node_t *ints)
 
 	for (i = 0; i < 7; i++)
 	{
-		if (stack_methods[i].opcode && !strcmp(args[0], stack_methods[i].opcode))
+		eval = !strcmp(ints->opcode, stack_methods[i].opcode);
+		if (stack_methods[i].opcode && eval)
 		{
 			stack_methods[i].f(ints);
 			return (1);
 		}
 	}
+
 	return (0);
 }
 /**
@@ -38,100 +42,48 @@ node_t *init_node()
 {
 	node_t *inst = malloc(sizeof(node_t)); /* Create main node */
 
-	if (!inst) /* If there is an error creating the main node */
-		return (NULL);
+	if (!inst)
+	{
+		fprintf(stderr, "Error: malloc failed");
+		exit(EXIT_FAILURE);
+	}
 
 	inst->head = NULL;  /* head of the stack */
 	inst->tail = NULL;  /* tail of the stack */
 	inst->line = NULL;  /* current line      */
 	inst->type = STACK; /* stack by default  */
+	inst->fd   = NULL;
 	inst->line_num = 1;
 	return (inst);
 }
-/**
- * free_stack - toggle type of the stack - queue
- * @main: main node
- * @fd: file descriptor
- *
- * Return: void
- */
-void free_stack(node_t *main, FILE *fd)
-{
-	free(main->line);
 
-	if (main->head)
-	{
-		stack_t *tmp = main->head;
-		stack_t *next = NULL;
-
-		while (tmp)
-		{
-			next = tmp->next;
-			free(tmp);
-			tmp = next;
-		}
-	}
-
-	if (fd)
-		fclose(fd);
-
-	free(main);
-}
 /**
  * argument_pass - check if the argument is a digit
- * @args: str to check
- * @l: number line
  * @inst: ...
- * @fd: file descriptor
  *
  * Return: the number of arg or error
  */
-int argument_pass(char **args, int l, node_t *inst, FILE *fd)
+int argument_pass(node_t *inst)
 {
-	int num = 0;
 	unsigned int i;
-	char *str = args[1];
 
-	if (strcmp(args[0], "push") == 0 && !args[1])
+	if (strcmp(inst->opcode, "push") == 0 && !inst->arg)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", l);
-		free_memory_int_error(args, inst, fd);
+		fprintf(stderr, "L%d: usage: push integer\n", inst->line_num);
+		free_all(inst, EXIT_FAILURE);
 	}
 
-	if (strcmp(args[0], "push") == 0)
+	if (strcmp(inst->opcode, "push") == 0)
 	{
-		for (i = 0; i < strlen(str); i++)
+		for (i = 0; i < strlen(inst->arg); i++)
 		{
-			if (isdigit(str[i]) == 0)
+			if (isdigit(inst->arg[i]) == 0)
 			{
-				fprintf(stderr, "L%d: usage: push integer\n", l);
-				free_memory_int_error(args, inst, fd);
+				fprintf(stderr, "L%d: usage: push integer\n", inst->line_num);
+				free_all(inst, EXIT_FAILURE);
 			}
-
 		}
-		num = atoi(args[1]);
 	}
-	return (num);
 
-}
-/**
- * free_memory_int_error - free memory int error
- * @args: str to check
- * @inst: ...
- * @fd: file descriptor
- *
- * Return: the number of arg or error
- */
-void free_memory_int_error(char **args, node_t *inst, FILE *fd)
-{
-	int i;
-
-	for (i = 0; args && args[i]; i++)
-		free(args[i]);
-
-	if (args)
-		free(args);
-
-	free_stack(inst, fd);
-	exit(EXIT_FAILURE);
+	return (1);
 }
