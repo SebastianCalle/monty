@@ -86,19 +86,18 @@ int argument_pass(char **args, int l, node_t *inst, FILE *fd)
 	unsigned int i;
 	char *str = args[1];
 
+	if (strcmp(args[0], "push") == 0 && !args[1])
+	{
+		free_memory_int_error(args, l, inst, fd);
+	}
+
 	if (strcmp(args[0], "push") == 0)
 	{
 		for (i = 0; i < strlen(str); i++)
 		{
 			if (isdigit(str[i]) == 0)
 			{
-				fprintf(stderr, "L%d: usage: push integer\n", l);
-				free(args[0]);
-				free(args[1]);
-				free(args);
-
-				free_stack(inst, fd);
-				exit(EXIT_FAILURE);
+				free_memory_int_error(args, l, inst, fd);
 			}
 
 		}
@@ -106,4 +105,23 @@ int argument_pass(char **args, int l, node_t *inst, FILE *fd)
 	}
 	return (num);
 
+}
+/**
+ * free_memory_int_error - free memory int error
+ * @args: str to check
+ * @l: number line
+ * @inst: ...
+ * @fd: file descriptor
+ *
+ * Return: the number of arg or error
+ */
+void free_memory_int_error(char **args, int l, node_t *inst, FILE *fd)
+{
+	fprintf(stderr, "L%d: usage: push integer\n", l);
+	free(args[0]);
+	free(args[1]);
+	free(args);
+
+	free_stack(inst, fd);
+	exit(EXIT_FAILURE);
 }
