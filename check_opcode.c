@@ -16,6 +16,7 @@ int check_opcode(char **args, node_t *ints)
 			{"pop", stack_pop},
 			{"pall", pall},
 			{"pint", pall},
+			{"swap", swap},
 			{NULL, NULL}
 	};
 

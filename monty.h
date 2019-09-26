@@ -75,9 +75,11 @@ int argument_pass(char **args, int l, node_t *inst, FILE *fd);
 void free_memory_int_error(char **args, node_t *inst, FILE *fd);
 
 /* Funtions stack*/
-int toggle_type(node_t *main);
-int stack_push(node_t *main);
-int stack_pop(node_t *main);
-int pall(node_t *main);
+int toggle_type(node_t *inst);
+int stack_push(node_t *inst);
+int stack_pop(node_t *inst);
+int pall(node_t *inst);
+int swap(node_t *inst);
+
 
 #endif /* MONTY_H */

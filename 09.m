@@ -1,0 +1,3 @@
+pall
+swapa
+pall
