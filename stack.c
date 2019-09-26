@@ -88,7 +88,7 @@ int pall(node_t *main)
 {
 	stack_t *tmp = main->head;
 
-	if (!main->head)
+	if (!main->head && !strcmp(main->opcode, "pint"))
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", main->line_num);
 		free_all(main, EXIT_FAILURE);

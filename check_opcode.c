@@ -77,6 +77,9 @@ int argument_pass(node_t *inst)
 	{
 		for (i = 0; i < strlen(inst->arg); i++)
 		{
+			if (i == 0 && (inst->arg[i] == '-' || inst->arg[i] == '+'))
+				continue;
+
 			if (isdigit(inst->arg[i]) == 0)
 			{
 				fprintf(stderr, "L%d: usage: push integer\n", inst->line_num);
