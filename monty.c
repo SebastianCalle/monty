@@ -10,7 +10,7 @@
  */
 int main(int argc, char *argv[])
 {
-	int n = 0, flag, l = 1;
+	int n = 0, flag, l = 1, i;
 	node_t *inst = NULL;
 	size_t ma = 0;
 	char **args;
@@ -44,8 +44,8 @@ int main(int argc, char *argv[])
 		}
 		l++;
 		n = 0;
-		free(args[0]);
-		free(args[1]);
+		for (i = 0; args[i]; i++)
+			free(args[i]);
 		free(args);
 	}
 	free_stack(inst, fd);
