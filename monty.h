@@ -87,5 +87,6 @@ int multiply(node_t *inst);
 int mod(node_t *inst);
 int pchar(node_t *inst);
 int pstr(node_t *inst);
+int rotl(node_t *inst);
 
 #endif /* MONTY_H */

@@ -19,6 +19,7 @@ int check_opcode(node_t *ints)
 			{"sub", sub}, {"div", divide},
 			{"mul", multiply}, {"mod", mod},
 			{"pchar", pchar}, {"pstr", pstr},
+			{"rotl", rotl},
 			{"nop", NULL}, {NULL, NULL}
 	};
 
