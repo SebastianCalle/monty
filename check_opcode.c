@@ -27,6 +27,9 @@ int check_opcode(node_t *ints)
 			{"nop", NULL},
 			{NULL, NULL}
 	};
+	
+	if (ints->opcode[0] == '#')
+		return (1);
 
 	for (i = 0; stack_methods[i].opcode; i++)
 	{
