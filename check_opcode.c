@@ -22,6 +22,7 @@ int check_opcode(node_t *ints)
 			{"add", add},
 			{"sub", sub},
 			{"div", divide},
+			{"mul", multiply},
 			{"nop", NULL},
 			{"#", NULL},
 			{NULL, NULL}
