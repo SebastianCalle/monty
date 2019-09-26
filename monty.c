@@ -48,7 +48,6 @@ int main(int argc, char *argv[])
 		inst->line = NULL;
 		inst->line_num++;
 	}
-
 	free_all(inst, 0);
 	return (0);
 }
