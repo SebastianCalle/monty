@@ -71,3 +71,34 @@ void free_stack(node_t *main, FILE *fd)
 	fclose(fd);
 	free(main);
 }
+/**
+ * argument_pass - check if the argument is a digit
+ * @arg: str to check
+ * Return: the number of arg or error
+ */
+int argument_pass(char **args, int l, node_t *inst, FILE *fd)
+{
+	int num = 0;
+	unsigned int i;
+	char *str = args[1];
+
+	if (strcmp(args[0], "push") == 0)
+	{
+		for (i = 0; i < strlen(str); i++)
+		{
+			if(isdigit(str[i]) == 0)
+			{
+				fprintf(stderr, "L%d: can't pint, stack empty\n", l);
+				free(args[0]);
+				free(args[1]);
+				free(args);
+				free_stack(inst, fd);
+				exit(EXIT_FAILURE);
+			}
+
+		}
+		num = atoi(args[1]);
+	}
+	return (num);
+
+}

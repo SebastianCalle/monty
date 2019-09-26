@@ -10,7 +10,7 @@
  */
 int main(int argc, char **argv)
 {
-	char line[2048];
+	char line[10000];
 	char **args;
 	FILE *fd;
 	int n = 0, flag, l = 1;
@@ -24,13 +24,13 @@ int main(int argc, char **argv)
 
 	fd = fopen(argv[1], "r");
 	inst = init_node();
-	while (fgets(line, 2048, (FILE *) fd))
+	while (fgets(line, 10000, (FILE *) fd))
 	{
 		args = _strtok(line, &n);
 		if (args == NULL || args[0] == NULL)
 			continue;
 		inst->opcode = args[0];
-		inst->arg = args[1] ? atoi(args[1]) : 0;
+		inst->arg = argument_pass(args, l, inst, fd);
 		flag = check_opcode(args, inst);
 		if (flag == 0)
 		{

@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <ctype.h>
 
 #define STACK 0
 #define QUEUE 1
@@ -69,6 +70,7 @@ int count_letters(char *str, int *index, int *l);
 int count_arg(char *str);
 void *_calloc(unsigned int nmemb, unsigned int size);
 int check_opcode(char **args, node_t *inst);
+int argument_pass(char **args, int l, node_t *inst, FILE *fd);
 
 /* Funtions stack*/
 int toggle_type(node_t *main);
