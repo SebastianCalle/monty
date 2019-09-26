@@ -49,22 +49,26 @@ int stack_push(node_t *main)
  */
 int stack_pop(node_t *main)
 {
-	stack_t *tmp;
-	int value;
+	stack_t *tmp, *new_node;
 
 	if (main->head)
 	{
 		/*if (main->type == STACK)*/
 		/*{*/
-		tmp = main->head->next;
-		value = main->head->value;
-		free(main->head);
-		main->head = tmp;
+		tmp = main->head;
 
-		if (main->head)
-			tmp->prev = NULL;
+		if (tmp->next == NULL)
+			main->head = NULL;
+		else
+		{
+			new_node = tmp->next;
+			new_node->prev = NULL;
+			main->head = new_node;
+		}
 
-		return (value);
+		free(tmp);
+
+		return (1);
 		/*}*/
 		/*else*/
 		/*	queue_pop(main);*/
