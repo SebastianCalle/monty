@@ -92,10 +92,11 @@ int argument_pass(char **args, int l, node_t *inst, FILE *fd)
 		{
 			if (isdigit(str[i]) == 0)
 			{
-				fprintf(stderr, "L%d: can't pint, stack empty\n", l);
+				fprintf(stderr, "L%d: usage: push integer\n", l);
 				free(args[0]);
 				free(args[1]);
 				free(args);
+
 				free_stack(inst, fd);
 				exit(EXIT_FAILURE);
 			}
