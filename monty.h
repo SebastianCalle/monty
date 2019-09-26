@@ -68,12 +68,6 @@ typedef struct instruction_s
 	fun f;
 } instruction_t;
 
-void *_calloc(unsigned int nmemb, unsigned int size);
-int check_flag(char str, int *index, int *i, int *c);
-int count_letters(char *str, int *index, int *l);
-int check_del(char c, char b);
-int count_arg(char *str);
-
 void free_file(node_t *inst, int error);
 void free_all(node_t *inst, int error);
 int argument_pass(node_t *inst);
@@ -83,6 +77,7 @@ int check_opcode(node_t *inst);
 int toggle_type(node_t *main);
 int stack_push(node_t *main);
 int stack_pop(node_t *main);
+int swap(node_t *inst);
 int pall(node_t *main);
 
 #endif /* MONTY_H */

@@ -18,6 +18,7 @@ int check_opcode(node_t *ints)
 			{"pop", stack_pop},
 			{"pall", pall},
 			{"pint", pall},
+			{"swap", swap},
 			{NULL, NULL}
 	};
 
