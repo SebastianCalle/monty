@@ -10,7 +10,7 @@ int rotl(node_t *inst)
 	stack_t *top = inst->head;
 	stack_t *top2 = inst->head;
 	stack_t *aux = top->next;
-	
+
 	if (!inst->head)
 		return (0);
 	while (top->next)
