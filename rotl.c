@@ -8,11 +8,12 @@
 int rotl(node_t *inst)
 {
 	stack_t *top = inst->head;
-	int num = inst->head->value;
+	int num;
 
 	if (!inst->head)
 		return (0);
 
+	num = inst->head->value;
 	add_dnodeint_end(&top, num);
 	stack_pop(inst);
 
