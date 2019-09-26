@@ -25,7 +25,7 @@ int add(node_t *inst)
 }
 
 /**
- * sub - function that substract the top element of the stack whit seconde element
+ * sub - function that substract the top element of the stack
  * @inst: node manage of stack
  *
  * Return: 0 if susccess or 1 if not
@@ -48,7 +48,7 @@ int sub(node_t *inst)
 	return (0);
 }
 /**
- * divide - function that divide the top element of the stack whit seconde element
+ * divide - function that divide the top element of the stack
  * @inst: node manage of stack
  *
  * Return: 0 if susccess or 1 if not
@@ -77,7 +77,7 @@ int divide(node_t *inst)
 	return (0);
 }
 /**
- * multiply - function that multiplicate the top element of the stack whit seconde element
+ * multiply - function that multiplicate the top element of the stack
  * @inst: node manage of stack
  *
  * Return: 0 if susccess or 1 if not
