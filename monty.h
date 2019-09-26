@@ -76,6 +76,7 @@ int check_opcode(node_t *inst);
 /* Funtions stack*/
 int toggle_type(node_t *main);
 int stack_push(node_t *main);
+int queue_push(node_t *main);
 int stack_pop(node_t *main);
 int swap(node_t *inst);
 int pall(node_t *main);
