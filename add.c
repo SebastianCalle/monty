@@ -36,7 +36,7 @@ int sub(node_t *inst)
 
 	if (inst->head == NULL || inst->head->next == NULL)
 	{
-		fprintf(stderr, "L%d: can't add, stack too short\n", inst->line_num);
+		fprintf(stderr, "L%d: can't sub, stack too short\n", inst->line_num);
 		free_all(inst, 1);
 	}
 
