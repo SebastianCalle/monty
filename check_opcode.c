@@ -28,12 +28,6 @@ int check_opcode(node_t *ints)
 			{NULL, NULL}
 	};
 
-	for (i = 0; inst->opcode; i++)
-	{
-		if (inst->opcode[0] == '#')
-			return (1);
-	}
-
 	for (i = 0; stack_methods[i].opcode; i++)
 	{
 		eval = stack_methods[i].opcode ? 1 : 0;
