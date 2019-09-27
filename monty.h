@@ -53,6 +53,8 @@ typedef struct node_s
 
 typedef int (*fun)(node_t *inst);
 node_t *init_node();
+stack_t *add_dnodeint_end(stack_t **head, const int n);
+stack_t *add_dnodeint(stack_t **head, const int n);
 
 /**
  * struct instruction_s - opcode and its function
@@ -78,6 +80,7 @@ int toggle_type(node_t *main);
 int stack_push(node_t *main);
 int queue_push(node_t *main);
 int stack_pop(node_t *main);
+int queue_pop(node_t *main);
 int swap(node_t *inst);
 int pall(node_t *main);
 int add(node_t *inst);
@@ -85,5 +88,9 @@ int sub(node_t *inst);
 int divide(node_t *inst);
 int multiply(node_t *inst);
 int mod(node_t *inst);
+int pchar(node_t *inst);
+int pstr(node_t *inst);
+int rotr(node_t *inst);
+int rotl(node_t *inst);
 
 #endif /* MONTY_H */

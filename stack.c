@@ -30,6 +30,7 @@ int stack_push(node_t *main)
 		}
 		else
 		{
+			main->head->prev = new_node;
 			new_node->next = main->head;
 			main->head = new_node;
 		}

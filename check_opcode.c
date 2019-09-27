@@ -12,21 +12,19 @@ int check_opcode(node_t *ints)
 	int i;
 
 	instruction_t stack_methods[] = {
-			{"queue", toggle_type},
-			{"stack", toggle_type},
-			{"push", stack_push},
-			{"pop", stack_pop},
-			{"pall", pall},
-			{"pint", pall},
-			{"swap", swap},
-			{"add", add},
-			{"sub", sub},
-			{"div", divide},
-			{"mul", multiply},
-			{"mod", mod},
-			{"nop", NULL},
-			{NULL, NULL}
+			{"queue", toggle_type}, {"stack", toggle_type},
+			{"push", stack_push}, {"pop", stack_pop},
+			{"pall", pall}, {"pint", pall},
+			{"swap", swap}, {"add", add},
+			{"sub", sub}, {"div", divide},
+			{"mul", multiply}, {"mod", mod},
+			{"pchar", pchar}, {"pstr", pstr},
+			{"rotl", rotl}, {"rotr", rotr},
+			{"nop", NULL}, {NULL, NULL}
 	};
+
+	if (ints->opcode[0] == '#')
+		return (1);
 
 	for (i = 0; stack_methods[i].opcode; i++)
 	{
