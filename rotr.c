@@ -10,7 +10,7 @@ int rotr(node_t *inst)
 	stack_t *top = inst->head;
 	int num;
 
-	if (!inst->head)
+	if (!inst->head || top->next == NULL)
 		return (0);
 	num = inst->tail->value;
 	add_dnodeint(&top, num);
